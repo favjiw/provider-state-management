@@ -89,6 +89,20 @@ class MultiProviderMain extends StatelessWidget {
                     ),
                   ),
                 ),
+                SizedBox(height: 50),
+                Consumer<Money>(
+                  builder:
+                      (context, money, _) => Consumer<Cart>(
+                        builder:
+                            (context, cart, _) => TextButton(
+                              onPressed: () {
+                                money.balance = 10000;
+                                cart.quantity = 0;
+                              },
+                              child: Text('Reset'),
+                            ),
+                      ),
+                ),
               ],
             ),
           ),
@@ -98,7 +112,7 @@ class MultiProviderMain extends StatelessWidget {
                   builder:
                       (context, cart, _) => FloatingActionButton(
                         onPressed: () {
-                          if(money.balance >= 500){
+                          if (money.balance >= 500) {
                             cart.quantity += 1;
                             money.balance -= 500;
                           }
